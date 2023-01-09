@@ -3,12 +3,21 @@ interface Todo {
   completed: boolean;
 }
 
-const todos: Todo[] = [];
-
 const btn = document.getElementById("btn")! as HTMLButtonElement;
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.getElementById("todoform")!;
 const list = document.getElementById("todolist")!;
+
+const todos: Todo[] = readTodos();
+todos.forEach(createTodo);
+
+
+
+function readTodos(): Todo[] {
+  const todosJSON = localStorage.getItem("todos");
+  if (todosJSON === null) return [];
+  return JSON.parse(todosJSON);
+}
 
 function handleSubmit(e: SubmitEvent) {
   e.preventDefault();
@@ -19,6 +28,7 @@ function handleSubmit(e: SubmitEvent) {
   createTodo(newTodo);
   todos.push(newTodo);
 
+  localStorage.setItem("todos", JSON.stringify(todos));
   input.value = "";
 }
 
