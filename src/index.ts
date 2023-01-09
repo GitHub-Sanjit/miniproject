@@ -1,11 +1,22 @@
 const btn = document.getElementById("btn")! as HTMLButtonElement;
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.getElementById("todoform")!;
+const list = document.getElementById("todolist")!;
 
-form.addEventListener("submit", function (e) {
+function handleSubmit(e: SubmitEvent) {
   e.preventDefault();
-  console.log("Submitted");
-});
+  const newTodoText = input.value;
+  const newLI = document.createElement("li");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  newLI.append(newTodoText);
+  newLI.append(checkbox);
+  list.append(newLI);
+  input.value = "";
+}
+
+form.addEventListener("submit", handleSubmit);
 // btn?.addEventListener("click", function () {
 //   alert(input.value);
 //   input.value = "";
