@@ -1,3 +1,5 @@
 "use strict";
-console.log("Hello!!!!!!!!!!!, I am hungry");
-console.log("Woooo!!!");
+const btn = document.getElementById("btn");
+btn?.addEventListener("click", function () {
+    alert("Clicked");
+});
