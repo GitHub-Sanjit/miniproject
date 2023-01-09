@@ -1,5 +1,7 @@
-const btn = document.getElementById("btn")!;
+const btn = document.getElementById("btn")! as HTMLButtonElement;
+const input = document.getElementById("todoinput")! as HTMLInputElement;
 
 btn?.addEventListener("click", function () {
-  alert("Clicked");
+  alert(input.value);
+  input.value = "";
 });
